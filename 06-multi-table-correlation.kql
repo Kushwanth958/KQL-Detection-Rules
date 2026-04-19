@@ -1,0 +1,6 @@
+//finding common IPs that are trying to hack, confirmation from multiple tables.
+TitanShield_AuthenticationEvents
+|where result == "Failed Login"
+| join kind=inner TitanShield_NetworkFlow on $left.src_ip == $right.src_ip
+|distinct  username, src_ip
+|take 100
