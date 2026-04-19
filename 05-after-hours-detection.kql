@@ -1,0 +1,9 @@
+// Detection: After Hours External Logins
+// Purpose: Catch successful external logins outside business hours
+TitanShield_AuthenticationEvents
+| where src_ip !contains "10.10"
+| where result == "Successful Login"
+| where datetime_part("hour", timestamp) < 8
+      or datetime_part("hour", timestamp) > 18
+| project timestamp, username, src_ip
+| order by timestamp asc
