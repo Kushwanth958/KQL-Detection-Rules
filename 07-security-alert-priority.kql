@@ -1,0 +1,9 @@
+//"Your manager wants a priority list of all HIGH severity alerts from the last 30 days, showing what type of 
+//alert it is and how many of each. She wants to know where to focus the team's attention first."
+
+TitanShield_SecurityAlerts
+|where severity =="high"
+|where timestamp >= ago(1000d)
+|summarize count()by alert_type
+|order by count_ desc 
+
