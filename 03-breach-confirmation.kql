@@ -1,0 +1,7 @@
+// Detection: Breach Confirmation by IP
+// Purpose: Confirm if top attacker IP successfully logged in
+TitanShield_AuthenticationEvents
+| where src_ip == "200.162.41.140"
+| where result == "Successful Login"
+| summarize count() by username
+| order by count_ desc
