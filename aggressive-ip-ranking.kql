@@ -1,0 +1,6 @@
+// Detection: Most Aggressive External IPs
+// Purpose: Rank external IPs by number of login attempts
+TitanShield_AuthenticationEvents
+| where src_ip !contains "10.10"
+| summarize count() by src_ip
+| order by count_ desc
