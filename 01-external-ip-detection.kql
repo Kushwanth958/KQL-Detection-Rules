@@ -1,0 +1,6 @@
+// Detection: External IP Login Attempts
+// Purpose: Find all login attempts from outside the internal network
+TitanShield_AuthenticationEvents
+| where src_ip !contains "10.10"
+| project timestamp, username, src_ip, result
+| order by timestamp asc
